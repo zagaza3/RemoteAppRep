@@ -1,25 +1,56 @@
 import os
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
+
+#sajat hely
+BASE_DIR = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+#nircmd keresese
+NIRCMD = os.path.join(BASE_DIR, "nircmd.exe")
 #hangero
 def hangfel():
-    os.system('powershell -command "$wshell = New-Object -ComObject WScript.Shell; $wshell.SendKeys([char]175)"')
+    os.system(f'"{NIRCMD}" changesysvolume 5000')
 def hangle():
-    os.system('powershell -command "$wshell = New-Object -ComObject WScript.Shell; $wshell.SendKeys([char]174)"')
-def mute():
-    os.system('powershell -command "$wshell = New-Object -ComObject WScript.Shell; $wshell.SendKeys([char]173)"')
+    os.system(f'"{NIRCMD}" changesysvolume -5000')
+def mute_unmute():
+    os.system(f'"{NIRCMD}" mutesysvolume 2')
 #lejatszas megallitas stb
-def plpause():
-    os.system('powershell -command "$wshell = New-Object -ComObject WScript.Shell; $wshell.SendKeys([char]179)"')
-def elozo():
-    os.system('powershell -command "$wshell = New-Object -ComObject WScript.Shell; $wshell.SendKeys([char]177)"')
-def kovetkezo():
-    os.system('powershell -command "$wshell = New-Object -ComObject WScript.Shell; $wshell.SendKeys([char]176)"')
+
 #HTTP jelfogadas
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        print(f"utvonal: {self.path}")  # prints to terminal
+        print(f"utvonal: {self.path}")  
 
-        # Respond to browser
+        #favico az mindegy
+        if self.path == "/favicon.ico":
+            self.send_response(204)
+            self.end_headers()
+            return
+
+        #funkcio valasztas
+        if self.path == "/pause":
+            try: 
+                print("Play/Pause a bejovo")
+                
+            except:
+                print("valami nem jo a playpause callba")
+        elif self.path == "/hangfel":
+            try: 
+                print("hangfel a bejovo")
+                hangfel()
+            except:
+                print("valami nem jo a hangfel callba")
+        elif self.path == "/hangle":
+            try: 
+                print("hangle a bejovo")
+                hangle()
+            except:
+                print("valami nem jo a hangle callba")
+        elif self.path == "/mute":
+            try: 
+                print("mute a bejovo")
+                mute_unmute()
+            except:
+                print("valami nem jo a mute callba")
         message = f"bejovo: {self.path}"
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
