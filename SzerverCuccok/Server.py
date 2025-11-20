@@ -62,7 +62,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         if self.path == "/pause":
             try: 
                 print("Play/Pause a bejovo")
-                
+                megallit_indit()
             except:
                 print("valami nem jo a playpause callba")
         elif self.path == "/hangfel":
