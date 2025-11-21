@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-
+import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity, useColorScheme } from 'react-native';
+//ha a git LF ezik akk ez : git config --global core.autocrlf true
 export default function App() {
   const [gepIpcime, gepIpcimBeallit] = useState('');
   const [elmentettgepIpcime, elmentettgepIpcimBeallit] = useState('');
+  const [settingLathato, settingLegyenLathato] = useState('');
 
   useEffect(() => {
     const betoltIP = async () => {
@@ -48,20 +49,92 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Add meg a PC IP címét:</Text>
-      <TextInput
-        style={styles.input}
-        value={gepIpcime}
-        onChangeText={gepIpcimBeallit}
-        placeholder="192.168.x.x"
-      />
-      <Button title="Save IP" onPress={gepIPelementese} />
+      <Button title={settingLathato ? "Bezárás" : "Új gép hozzáadása"} onPress={() => settingLegyenLathato(!settingLathato)} />
+      {settingLathato && (
+        <View style={{ marginTop: 20, width: "100%", alignItems: "center" }}>
+          <Text>Add meg a PC IP címét:</Text>
+          <TextInput
+            style={styles.input}
+            value={gepIpcime}
+            onChangeText={gepIpcimBeallit}
+            placeholder="192.168.x.x"
+          />
+          <Button title="IP mentése" onPress={gepIPelementese} />
+        </View>
+      )}
+      {/* hatra pause resume eolre */}
+      <View style={{ marginTop: 70 }}>
+        <TouchableOpacity onPress={() => Utasito('pause')}>
+          <Image source={require('./assets/rP.png')} style = {{width: 130, height: 130}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: -100, marginLeft: 230 }}>
+        <TouchableOpacity onPress={() => Utasito('elore')}>
+          <Image source={require('./assets/fwd.png')} style = {{width: 80, height: 70}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: -67, marginLeft: -230 }}>
+        <TouchableOpacity onPress={() => Utasito('hatra')}>
+          <Image source={require('./assets/hatra.png')} style = {{width: 80, height: 70}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      {/* mute hang le fel  */}
+      <View style={{ marginTop: 50 }}>
+        <TouchableOpacity onPress={() => Utasito('hangle')}>
+          <Image source={require('./assets/VOLD.png')} style = {{width: 110, height: 110}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: -110, marginLeft: 270 }}>
+        <TouchableOpacity onPress={() => Utasito('hangfel')}>
+          <Image source={require('./assets/VOLU.png')} style = {{width: 115, height: 115}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: -100, marginLeft: -250 }}>
+        <TouchableOpacity onPress={() => Utasito('mute')}>
+          <Image source={require('./assets/M.png')} style = {{width: 90, height: 90}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      {/* pc controls */}
+      <View style={{ marginTop: -370, marginLeft: -280 }}>
+        <TouchableOpacity onPress={() => Utasito('leallit')}>
+          <Image source={require('./assets/shutdown.png')} style = {{width: 70, height: 70}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: 350, marginLeft: 0 }}>
+        <TouchableOpacity onPress={() => Utasito('egerfel')}>
+          <Image source={require('./assets/FEL.jpg')} style = {{width: 90, height: 90}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: 10, marginLeft: -200 }}>
+        <TouchableOpacity onPress={() => Utasito('egerbal')}>
+          <Image source={require('./assets/B2.jpg')} style = {{width: 100, height: 100}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: -100, marginLeft: 200 }}>
+        <TouchableOpacity onPress={() => Utasito('egerjobb')}>
+          <Image source={require('./assets/J.jpg')} style = {{width: 100, height: 100}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: 0, marginLeft: 0 }}>
+        <TouchableOpacity onPress={() => Utasito('egerle')}>
+          <Image source={require('./assets/LE.jpg')} style = {{width: 100, height: 100}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
 
-      <View style={{ marginTop: 30 }}>
-        <Button
-          title="| | >"
-          onPress={() => Utasito('pause')} 
-        />
+      <View style={{ marginTop:-325, marginLeft: -235 }}>
+        <TouchableOpacity onPress={() => Utasito('balclick')}>
+          <Image source={require('./assets/LC.jpg')} style = {{width: 100, height: 100}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: -100, marginLeft: 235 }}>
+        <TouchableOpacity onPress={() => Utasito('jobbclick')}>
+          <Image source={require('./assets/RC.jpg')} style = {{width: 100, height: 100}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ marginTop: 150, marginLeft: 240 }}>
+        <TouchableOpacity onPress={() => Utasito('fel')}>
+          <Image source={require('./assets/SU.jpg')} style = {{width: 150, height: 150}} resizeMode='contain' />
+        </TouchableOpacity>
       </View>
     </View>
   );
