@@ -63,44 +63,38 @@ export default function App() {
         </View>
       )}
       {/* hatra pause resume eolre */}
-      <View style={{ marginTop: 70 }}>
-        <TouchableOpacity onPress={() => Utasito('pause')}>
-          <Image source={require('./assets/rP.png')} style = {{width: 130, height: 130}} resizeMode='contain' />
-        </TouchableOpacity>
-      </View>
-      <View style={{ marginTop: -100, marginLeft: 230 }}>
-        <TouchableOpacity onPress={() => Utasito('elore')}>
-          <Image source={require('./assets/fwd.png')} style = {{width: 80, height: 70}} resizeMode='contain' />
-        </TouchableOpacity>
-      </View>
-      <View style={{ marginTop: -67, marginLeft: -230 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", width: "80%", marginTop: 20 }}>
         <TouchableOpacity onPress={() => Utasito('hatra')}>
-          <Image source={require('./assets/hatra.png')} style = {{width: 80, height: 70}} resizeMode='contain' />
+          <Image source={require('./assets/hatra.png')} style={{ width: 70, height: 70, top: 30 }} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => Utasito('pause')}>
+         <Image source={require('./assets/rP.png')} style={{ width: 130, height: 130 }} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => Utasito('elore')}>
+          <Image source={require('./assets/fwd.png')} style={{ width: 70, height: 70, top: 30 }} />
         </TouchableOpacity>
       </View>
       {/* mute hang le fel  */}
-      <View style={{ marginTop: 50 }}>
-        <TouchableOpacity onPress={() => Utasito('hangle')}>
-          <Image source={require('./assets/VOLD.png')} style = {{width: 110, height: 110}} resizeMode='contain' />
-        </TouchableOpacity>
-      </View>
-      <View style={{ marginTop: -110, marginLeft: 270 }}>
-        <TouchableOpacity onPress={() => Utasito('hangfel')}>
-          <Image source={require('./assets/VOLU.png')} style = {{width: 115, height: 115}} resizeMode='contain' />
-        </TouchableOpacity>
-      </View>
-      <View style={{ marginTop: -100, marginLeft: -250 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", width: "80%", marginTop: 30 }}>
         <TouchableOpacity onPress={() => Utasito('mute')}>
-          <Image source={require('./assets/M.png')} style = {{width: 90, height: 90}} resizeMode='contain' />
+          <Image source={require('./assets/M.png')} style={{ width: 70, height: 70, left: -20 }} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Utasito('hangle')}>
+          <Image source={require('./assets/VOLD.png')} style={{ width: 100, height: 75 }} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Utasito('hangfel')}>
+          <Image source={require('./assets/VOLU.png')} style={{ width: 100, height: 75, left: 30 }} />
         </TouchableOpacity>
       </View>
       {/* pc controls */}
-      <View style={{ marginTop: -370, marginLeft: -280 }}>
+      <View style={{ marginTop: -300, marginLeft: -280 }}>
         <TouchableOpacity onPress={() => Utasito('leallit')}>
           <Image source={require('./assets/shutdown.png')} style = {{width: 70, height: 70}} resizeMode='contain' />
         </TouchableOpacity>
       </View>
-      <View style={{ marginTop: 350, marginLeft: 0 }}>
+      <View style={{ marginTop: 300, marginLeft: 0 }}>
         <TouchableOpacity onPress={() => Utasito('egerfel')}>
           <Image source={require('./assets/FEL.jpg')} style = {{width: 90, height: 90}} resizeMode='contain' />
         </TouchableOpacity>
@@ -134,6 +128,11 @@ export default function App() {
       <View style={{ marginTop: 150, marginLeft: 240 }}>
         <TouchableOpacity onPress={() => Utasito('fel')}>
           <Image source={require('./assets/SU.jpg')} style = {{width: 150, height: 150}} resizeMode='contain' />
+        </TouchableOpacity>
+      </View>
+      <View style={{ top: -150, left: -120}}>
+        <TouchableOpacity onPress={() => Utasito('le')}>
+          <Image source={require('./assets/SD.jpg')} style = {{width: 150, height: 150}} resizeMode='contain' />
         </TouchableOpacity>
       </View>
     </View>
